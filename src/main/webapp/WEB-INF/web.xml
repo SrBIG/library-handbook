@@ -5,4 +5,14 @@
          version="3.1">
     <display-name>Lab #5: Library handbook</display-name>
 
+    <servlet>
+        <servlet-name>bookList</servlet-name>
+        <servlet-class>web.servlet.page.BookListPageServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>bookList</servlet-name>
+        <url-pattern>/books</url-pattern>
+    </servlet-mapping>
+
 </web-app>

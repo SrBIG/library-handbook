@@ -6,21 +6,25 @@
 
     <groupId>bsuir.ai.biruchov</groupId>
     <artifactId>library-handbook</artifactId>
+    <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
+    <url>http://maven.apache.org</url>
 
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
+            <version>3.1.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>javax.servlet.jsp-api</artifactId>
-            <version>2.3.3</version>
+            <version>2.3.1</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>jstl</groupId>
+            <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
@@ -35,6 +39,11 @@
             <artifactId>mockito-core</artifactId>
             <version>2.23.0</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>6.0.6</version>
         </dependency>
     </dependencies>
 
