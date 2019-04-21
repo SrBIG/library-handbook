@@ -35,4 +35,14 @@
         <url-pattern>/author/*</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>readerEdit</servlet-name>
+        <servlet-class>web.servlet.page.ReaderEditPageServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>readerEdit</servlet-name>
+        <url-pattern>/reader/*</url-pattern>
+    </servlet-mapping>
+
 </web-app>
