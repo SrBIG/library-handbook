@@ -9,9 +9,9 @@
         <h3>
             Book Edit
         </h3>
-        <c:if test="${not empty message}">
+        <c:if test="${not empty param.message}">
             <p class="success">
-                    ${message}
+                    ${param.message}
             </p>
         </c:if>
         <form method="post" action="${pageContext.servletContext.contextPath}/book/${book.id}">

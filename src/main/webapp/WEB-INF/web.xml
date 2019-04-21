@@ -25,4 +25,14 @@
         <url-pattern>/book/*</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>authorEdit</servlet-name>
+        <servlet-class>web.servlet.page.AuthorEditPageServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>authorEdit</servlet-name>
+        <url-pattern>/author/*</url-pattern>
+    </servlet-mapping>
+
 </web-app>

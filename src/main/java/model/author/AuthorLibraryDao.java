@@ -66,7 +66,7 @@ public class AuthorLibraryDao implements LibraryDao<Author> {
     public Author getById(int id) {
         try {
             connection = dbController.getConnection();
-            PreparedStatement statement = connection.prepareStatement(LibraryHandbookQuery.ALL_AUTHORS);
+            PreparedStatement statement = connection.prepareStatement(LibraryHandbookQuery.AUTHOR_BY_ID);
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             Author author = null;
