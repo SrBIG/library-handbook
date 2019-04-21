@@ -15,4 +15,14 @@
         <url-pattern>/books</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>bookEdit</servlet-name>
+        <servlet-class>web.servlet.page.BookEditPageServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>bookEdit</servlet-name>
+        <url-pattern>/book/*</url-pattern>
+    </servlet-mapping>
+
 </web-app>

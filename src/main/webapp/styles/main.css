@@ -28,3 +28,9 @@ td {
 img.product-tile {
     max-width: 64px;
 }
+
+.main-info-block {
+    max-width: 98%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
