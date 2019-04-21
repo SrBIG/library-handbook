@@ -114,6 +114,27 @@ public class BookLibraryDao implements LibraryDao<Book> {
         }
     }
 
+    @Override
+    public Book getByName(String name) {
+        try {
+            connection = dbController.getConnection();
+            PreparedStatement statement = connection.prepareStatement(LibraryHandbookQuery.BOOK_BY_TITLE);
+            statement.setString(1, name);
+            ResultSet resultSet = statement.executeQuery();
+            Book book = null;
+            if (resultSet.next()) {
+                book = createBook(resultSet);
+            }
+            resultSet.close();
+            statement.close();
+            dbController.closeConnection(connection);
+            return book;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     private Integer getLastId() {
         try {
             connection = dbController.getConnection();

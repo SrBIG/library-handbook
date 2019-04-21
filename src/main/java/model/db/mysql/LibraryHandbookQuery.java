@@ -1,12 +1,23 @@
 package model.db.mysql;
 
 public class LibraryHandbookQuery {
-    public static final String BOOK_BY_ID = "SELECT * FROM books WHERE id=?";
+    public static final String BOOK_BY_ID =
+            "SELECT b.id, b.title, a.id, a.name, a.country, r.id, r.name, r.address, r.age, b.available\n" +
+                    "FROM books b\n" +
+                    "LEFT JOIN authors a ON b.author_id = a.id \n" +
+                    "LEFT JOIN readers r ON b.reader_id = r.id\n" +
+                    "WHERE b.id = ?";
     public static final String ALL_BOOKS =
             "SELECT b.id, b.title, a.id, a.name, a.country, r.id, r.name, r.address, r.age, b.available\n" +
                     "FROM books b\n" +
                     "LEFT JOIN authors a ON b.author_id = a.id\n" +
                     "LEFT JOIN readers r ON b.reader_id = r.id\n";
+    public static final String BOOK_BY_TITLE =
+            "SELECT b.id, b.title, a.id, a.name, a.country, r.id, r.name, r.address, r.age, b.available\n" +
+                    "FROM books b\n" +
+                    "LEFT JOIN authors a ON b.author_id = a.id\n" +
+                    "LEFT JOIN readers r ON b.reader_id = r.id\n" +
+                    "WHERE b.title = ?";
     public static final String ADD_BOOK = "INSERT INTO books (title, author_id, reader_id, available) VALUES(?,?,?,?)";
     public static final String DELETE_BOOK = "DELETE FROM books WHERE id=?";
     public static final String UPDATE_BOOK = "UPDATE books SET title=?, author_id=?, reader_id=?, available=? WHERE id=?";

@@ -12,4 +12,6 @@ public interface LibraryDao<T> {
     T getById(int id);
 
     List<T> getAll();
+
+    T getByName(String name);
 }

@@ -104,6 +104,26 @@ public class AuthorLibraryDao implements LibraryDao<Author> {
         }
     }
 
+    public Author getByName(String name) {
+        try {
+            connection = dbController.getConnection();
+            PreparedStatement statement = connection.prepareStatement(LibraryHandbookQuery.AUTHOR_BY_NAME);
+            statement.setString(1, name);
+            ResultSet resultSet = statement.executeQuery();
+            Author author = null;
+            if (resultSet.next()) {
+                author = createAuthor(resultSet);
+            }
+            resultSet.close();
+            statement.close();
+            dbController.closeConnection(connection);
+            return author;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     private Integer getLastId() {
         try {
             connection = dbController.getConnection();

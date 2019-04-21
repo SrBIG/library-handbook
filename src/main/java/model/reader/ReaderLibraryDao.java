@@ -107,6 +107,27 @@ public class ReaderLibraryDao implements LibraryDao<Reader> {
         }
     }
 
+    @Override
+    public Reader getByName(String name) {
+        try {
+            connection = dbController.getConnection();
+            PreparedStatement statement = connection.prepareStatement(LibraryHandbookQuery.READER_BY_NAME);
+            statement.setString(1, name);
+            ResultSet resultSet = statement.executeQuery();
+            Reader reader = null;
+            if (resultSet.next()) {
+                reader = createReader(resultSet);
+            }
+            resultSet.close();
+            statement.close();
+            dbController.closeConnection(connection);
+            return reader;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     private Integer getLastId() {
         try {
             connection = dbController.getConnection();
