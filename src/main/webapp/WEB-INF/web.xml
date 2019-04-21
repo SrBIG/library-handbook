@@ -22,7 +22,7 @@
 
     <servlet-mapping>
         <servlet-name>bookEdit</servlet-name>
-        <url-pattern>/book/*</url-pattern>
+        <url-pattern>/editBook/*</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -32,7 +32,7 @@
 
     <servlet-mapping>
         <servlet-name>authorEdit</servlet-name>
-        <url-pattern>/author/*</url-pattern>
+        <url-pattern>/editAuthor/*</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -42,7 +42,7 @@
 
     <servlet-mapping>
         <servlet-name>readerEdit</servlet-name>
-        <url-pattern>/reader/*</url-pattern>
+        <url-pattern>/editReader/*</url-pattern>
     </servlet-mapping>
 
     <servlet>

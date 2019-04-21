@@ -30,13 +30,13 @@
             <c:forEach var="book" items="${books}">
                 <tr>
                     <td>
-                        <a href="${pageContext.servletContext.contextPath}/book/${book.id}">${book.title}</a>
+                        <a href="${pageContext.servletContext.contextPath}/editBook/${book.id}">${book.title}</a>
                     </td>
                     <td>
-                        <a href="${pageContext.servletContext.contextPath}/author/${book.author.id}">${book.author.name}</a>
+                        <a href="${pageContext.servletContext.contextPath}/editAuthor/${book.author.id}">${book.author.name}</a>
                     </td>
                     <td>
-                        <a href="${not empty book.reader ? pageContext.servletContext.contextPath.concat("/reader/").concat(book.reader.id) : null}">
+                        <a href="${not empty book.reader ? pageContext.servletContext.contextPath.concat("/editReader/").concat(book.reader.id) : null}">
                                 ${not empty book.reader ? book.reader.name : ""}
                         </a>
                     </td>
