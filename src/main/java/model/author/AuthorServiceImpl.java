@@ -1,18 +1,20 @@
 package model.author;
 
 import model.book.Book;
+import model.book.BookLibraryDao;
 import model.db.LibraryDao;
 import model.exception.AuthorNotFoundException;
-import model.exception.BookNotFoundException;
 
 import java.util.List;
 import java.util.Objects;
 
 public class AuthorServiceImpl implements AuthorService {
     private LibraryDao authorDao;
+    private LibraryDao bookDao;
 
     public AuthorServiceImpl() {
         authorDao = new AuthorLibraryDao();
+        bookDao = new BookLibraryDao();
     }
 
     @Override
@@ -37,13 +39,6 @@ public class AuthorServiceImpl implements AuthorService {
         return getAuthorFromDb(id);
     }
 
-    private Author getAuthorFromDb(int id) throws AuthorNotFoundException {
-        Author author = (Author) authorDao.getById(id);
-        if (Objects.isNull(author)) {
-            throw new AuthorNotFoundException();
-        } else return author;
-    }
-
     @Override
     public void update(int id, String name, String country) throws AuthorNotFoundException {
         Author author = getAuthorFromDb(id);
@@ -52,5 +47,18 @@ public class AuthorServiceImpl implements AuthorService {
         author.setCountry(country);
 
         authorDao.update(author);
+    }
+
+    @Override
+    public void delete(int id) {
+        authorDao.delete(id);
+        ((BookLibraryDao)bookDao).cleanBookFromReader(id);
+    }
+
+    private Author getAuthorFromDb(int id) throws AuthorNotFoundException {
+        Author author = (Author) authorDao.getById(id);
+        if (Objects.isNull(author)) {
+            throw new AuthorNotFoundException();
+        } else return author;
     }
 }

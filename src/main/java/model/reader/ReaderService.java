@@ -8,4 +8,6 @@ public interface ReaderService {
     Reader getById(int id) throws ReaderNotFoundException;
 
     void update(int id, String name, String address, byte age) throws ReaderNotFoundException, IllegalArgumentException;
+
+    void delete(int id);
 }

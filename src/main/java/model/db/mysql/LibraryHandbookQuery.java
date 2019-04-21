@@ -29,12 +29,14 @@ public class LibraryHandbookQuery {
     public static final String AUTHOR_BY_NAME = "SELECT * FROM authors WHERE name=?";
     public static final String ADD_AUTHOR = "INSERT INTO authors (name, country) VALUES(?,?)";
     public static final String DELETE_AUTHOR = "DELETE FROM authors WHERE id=?";
+    public static final String CLEAN_BOOK_FROM_AUTHOR = "UPDATE books SET books.author_id=0 WHERE books.author_id=?";
     public static final String UPDATE_AUTHOR = "UPDATE authors SET name=?, country=? WHERE id=?";
     public static final String LAST_AUTHOR_ID = "SELECT MAX(id) FROM authors";
     public static final String READER_BY_ID = "SELECT * FROM readers WHERE id=?";
     public static final String ALL_READERS = "SELECT * FROM readers";
     public static final String READER_BY_NAME = "SELECT * FROM readers WHERE name=?";
     public static final String ADD_READER = "INSERT INTO readers (name, address, age) VALUES(?,?,?)";
+    public static final String CLEAN_BOOK_FROM_READER = "UPDATE books SET books.reader_id=0, books.available=1 WHERE books.reader_id=?";
     public static final String DELETE_READER = "DELETE FROM readers WHERE id=?";
     public static final String UPDATE_READER = "UPDATE readers SET name=?, address=?, age=? WHERE id=?";
     public static final String LAST_READER_ID = "SELECT MAX(id) FROM readers";

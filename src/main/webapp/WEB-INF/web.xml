@@ -45,4 +45,34 @@
         <url-pattern>/reader/*</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>deleteBook</servlet-name>
+        <servlet-class>web.servlet.function.DeleteBookServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>deleteBook</servlet-name>
+        <url-pattern>/deleteBook/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteAuthor</servlet-name>
+        <servlet-class>web.servlet.function.DeleteAuthorServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>deleteAuthor</servlet-name>
+        <url-pattern>/deleteAuthor/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteReader</servlet-name>
+        <servlet-class>web.servlet.function.DeleteReaderServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>deleteReader</servlet-name>
+        <url-pattern>/deleteReader/*</url-pattern>
+    </servlet-mapping>
+
 </web-app>

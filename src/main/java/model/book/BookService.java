@@ -12,4 +12,6 @@ public interface BookService {
     Book getBookById(int id) throws BookNotFoundException;
 
     void update(int id, String title, Author author, Reader reader, boolean available) throws BookNotFoundException;
+
+    void delete(int id);
 }

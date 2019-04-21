@@ -12,4 +12,6 @@ public interface AuthorService {
     Author getById(int id) throws AuthorNotFoundException;
 
     void update(int id, String name, String country) throws AuthorNotFoundException;
+
+    void delete(int id);
 }

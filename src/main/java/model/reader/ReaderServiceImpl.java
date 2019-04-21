@@ -1,5 +1,6 @@
 package model.reader;
 
+import model.book.BookLibraryDao;
 import model.db.LibraryDao;
 import model.exception.ReaderNotFoundException;
 
@@ -8,9 +9,11 @@ import java.util.Objects;
 public class ReaderServiceImpl implements ReaderService {
     public static final Byte AGE_MINIMUM = 12;
     private LibraryDao readerDao;
+    private LibraryDao bookDao;
 
     public ReaderServiceImpl() {
         readerDao = new ReaderLibraryDao();
+        bookDao = new BookLibraryDao();
     }
 
     @Override
@@ -41,6 +44,12 @@ public class ReaderServiceImpl implements ReaderService {
         readerDao.update(reader);
     }
 
+    @Override
+    public void delete(int id) {
+        readerDao.delete(id);
+        ((BookLibraryDao)bookDao).cleanBookFromReader(id);
+    }
+
     private Reader getReaderFromDb(int id) throws ReaderNotFoundException {
         Reader reader = (Reader) readerDao.getById(id);
         if (Objects.isNull(reader)) {
@@ -48,7 +57,7 @@ public class ReaderServiceImpl implements ReaderService {
         } else return reader;
     }
 
-    void checkAge(byte age) throws IllegalArgumentException{
+    private void checkAge(byte age) throws IllegalArgumentException{
         if (age < AGE_MINIMUM){
             throw new IllegalArgumentException();
         }

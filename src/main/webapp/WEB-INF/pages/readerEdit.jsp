@@ -48,6 +48,9 @@
             <button>
                 Update
             </button>
+            <button formmethod="post" formaction="${pageContext.servletContext.contextPath}/deleteReader/${reader.id}">
+                Delete
+            </button>
         </form>
     </div>
 </tags:master>

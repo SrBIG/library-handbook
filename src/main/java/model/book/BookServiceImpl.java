@@ -48,6 +48,11 @@ public class BookServiceImpl implements BookService {
         bookDao.update(book);
     }
 
+    @Override
+    public void delete(int id) {
+        bookDao.delete(id);
+    }
+
     private Book getBookFromDb(int id) throws BookNotFoundException {
         Book book = (Book) bookDao.getById(id);
         if (Objects.isNull(book)) {

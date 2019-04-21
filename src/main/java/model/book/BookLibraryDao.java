@@ -137,6 +137,32 @@ public class BookLibraryDao implements LibraryDao<Book> {
         }
     }
 
+    public void cleanBookFromReader(int readerId) {
+        try {
+            connection = dbController.getConnection();
+            PreparedStatement statement = connection.prepareStatement(LibraryHandbookQuery.CLEAN_BOOK_FROM_READER);
+            statement.setInt(1, readerId);
+            statement.executeQuery();
+            statement.close();
+            dbController.closeConnection(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void cleanBookFromAuthor(int readerId) {
+        try {
+            connection = dbController.getConnection();
+            PreparedStatement statement = connection.prepareStatement(LibraryHandbookQuery.CLEAN_BOOK_FROM_AUTHOR);
+            statement.setInt(1, readerId);
+            statement.executeQuery();
+            statement.close();
+            dbController.closeConnection(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private Integer getLastId() {
         try {
             connection = dbController.getConnection();
@@ -158,9 +184,12 @@ public class BookLibraryDao implements LibraryDao<Book> {
         String title = resultSet.getString(2);
 
         int authorId = resultSet.getInt(3);
-        String authorName = resultSet.getString(4);
-        String authorCountry = resultSet.getString(5);
-        Author author = new Author(authorId, authorName, authorCountry);
+        Author author = null;
+        if (authorId != 0) {
+            String authorName = resultSet.getString(4);
+            String authorCountry = resultSet.getString(5);
+            author = new Author(authorId, authorName, authorCountry);
+        }
 
         int readerId = resultSet.getInt(6);
         Reader reader = null;
