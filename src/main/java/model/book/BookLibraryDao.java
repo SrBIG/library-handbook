@@ -1,11 +1,9 @@
 package model.book;
 
+import model.author.Author;
+import model.db.LibraryDao;
 import model.db.mysql.DatabaseController;
 import model.db.mysql.LibraryHandbookQuery;
-import model.author.AuthorLibraryDao;
-import model.db.LibraryDao;
-import model.reader.ReaderLibraryDao;
-import model.author.Author;
 import model.reader.Reader;
 
 import java.sql.*;
@@ -26,9 +24,11 @@ public class BookLibraryDao implements LibraryDao<Book> {
         try {
             connection = dbController.getConnection();
             PreparedStatement statement = connection.prepareStatement(LibraryHandbookQuery.ADD_BOOK);
+            int authorId = book.getAuthor().getId();
+            int readerId = Objects.nonNull(book.getReader()) ? book.getReader().getId() : 0;
             statement.setString(1, book.getTitle());
-            statement.setInt(2, book.getAuthor().getId());
-            statement.setInt(3, book.getReader().getId());
+            statement.setInt(2, authorId);
+            statement.setInt(3, readerId);
             statement.setBoolean(4, book.isAvailable());
             book.setId(getLastId());
             statement.execute();
@@ -58,9 +58,11 @@ public class BookLibraryDao implements LibraryDao<Book> {
         try {
             connection = dbController.getConnection();
             PreparedStatement statement = connection.prepareStatement(LibraryHandbookQuery.UPDATE_BOOK);
+            int authorId = book.getAuthor().getId();
+            int readerId = Objects.nonNull(book.getReader()) ? book.getReader().getId() : 0;
             statement.setString(1, book.getTitle());
-            statement.setInt(2, book.getAuthor().getId());
-            statement.setInt(3, book.getReader().getId());
+            statement.setInt(2, authorId);
+            statement.setInt(3, readerId);
             statement.setBoolean(4, book.isAvailable());
             statement.setInt(5, book.getId());
             statement.execute();
