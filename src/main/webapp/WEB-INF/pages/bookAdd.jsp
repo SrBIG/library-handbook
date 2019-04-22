@@ -22,6 +22,15 @@
                 <label for="author">Author:</label>
                 <br>
                 <input type="text" id="author" name="author" value="${not empty param.author ? param.author : ""}">
+                <script>
+                    var options = {
+                        url: function (term) {
+                            return "${pageContext.request.contextPath}/authorByHint?term=" + term;
+                        },
+                        getValue: ""
+                    };
+                    $("#author").easyAutocomplete(options);
+                </script>
                 <c:if test="${not empty authorError}">
                     <span class="error">
                             ${authorError}
@@ -32,6 +41,15 @@
                 <label for="reader">Reader:</label>
                 <br>
                 <input type="text" id="reader" name="reader" value="${not empty param.reader ? param.reader : ""}">
+                <script>
+                    var options = {
+                        url: function (term) {
+                            return "${pageContext.request.contextPath}/readerByHint?term=" + term;
+                        },
+                        getValue: "reader"
+                    };
+                    $("#reader").easyAutocomplete(options);
+                </script>
                 <c:if test="${not empty readerError}">
                     <span class="error">
                             ${readerError}
@@ -54,43 +72,3 @@
         </form>
     </div>
 </tags:master>
-
-<%--<p>--%>
-<%--    <input type="text" id="author" name="author" value="${author.lastName}" required>--%>
-<%--    <script>--%>
-<%--        var options = {--%>
-<%--            url: function(term) {--%>
-<%--                return "${pageContext.request.contextPath}/controller?command=get_all_authors_like&term=" + term;--%>
-<%--            },--%>
-<%--            getValue: "lastName"--%>
-<%--        };--%>
-<%--        $("#author").easyAutocomplete(options);--%>
-<%--    </script>--%>
-<%--</p>--%>
-<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>--%>
-<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/easy-autocomplete/1.3.5/jquery.easy-autocomplete.min.js" type="text/javascript"></script>--%>
-<%--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/easy-autocomplete/1.3.5/easy-autocomplete.min.css">--%>
-<%--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/easy-autocomplete/1.3.5/easy-autocomplete.themes.min.css">--%>
-
-
-<%--public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, IOException {--%>
-
-<%--response.setContentType("application/json");--%>
-<%--response.setCharacterEncoding("utf-8");--%>
-<%--String term = request.getParameter("term");--%>
-
-<%--List<Book> books = bookService.getBooksLike(term);--%>
-
-<%--String searchList = new Gson().toJson(books);--%>
-<%--response.getWriter().write(searchList);--%>
-<%--}--%>
-
-
-<%--private static final String SELECT_LIKE = "SELECT * FROM book, author WHERE book.author_id = author.id AND title LIKE ?";--%>
-
-
-<%--<dependency>--%>
-<%--    <groupId>com.google.code.gson</groupId>--%>
-<%--    <artifactId>gson</artifactId>--%>
-<%--    <version>2.8.5</version>--%>
-<%--</dependency>--%>

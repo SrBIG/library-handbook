@@ -2,6 +2,8 @@ package model.reader;
 
 import model.exception.ReaderNotFoundException;
 
+import java.util.List;
+
 public interface ReaderService {
     Reader getByName(String name) throws ReaderNotFoundException;
 
@@ -12,4 +14,6 @@ public interface ReaderService {
     void delete(int id);
 
     void save(String name, String address, byte age) throws IllegalArgumentException;
+
+    List<String> getReadersNamesLike(String term);
 }

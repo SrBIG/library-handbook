@@ -105,4 +105,24 @@
         <url-pattern>/addReader/*</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>authorByHint</servlet-name>
+        <servlet-class>web.servlet.function.hint.AuthorByHintServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>authorByHint</servlet-name>
+        <url-pattern>/authorByHint</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>readerByHint</servlet-name>
+        <servlet-class>web.servlet.function.hint.ReaderByHintServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>readerByHint</servlet-name>
+        <url-pattern>/readerByHint</url-pattern>
+    </servlet-mapping>
+
 </web-app>

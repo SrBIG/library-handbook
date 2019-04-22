@@ -4,6 +4,7 @@ import model.book.BookLibraryDao;
 import model.db.LibraryDao;
 import model.exception.ReaderNotFoundException;
 
+import java.util.List;
 import java.util.Objects;
 
 public class ReaderServiceImpl implements ReaderService {
@@ -61,6 +62,12 @@ public class ReaderServiceImpl implements ReaderService {
 
         readerDao.save(reader);
     }
+
+    @Override
+    public List<String> getReadersNamesLike(String term) {
+        return ((ReaderLibraryDao) readerDao).getNamesLike(term);
+    }
+
 
     private Reader getReaderFromDb(int id) throws ReaderNotFoundException {
         Reader reader = (Reader) readerDao.getById(id);

@@ -16,4 +16,6 @@ public interface AuthorService {
     void delete(int id);
 
     void save(String name, String country);
+
+    List<String> getAuthorsNamesLike(String term);
 }

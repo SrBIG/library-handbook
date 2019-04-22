@@ -32,6 +32,7 @@ public class LibraryHandbookQuery {
     public static final String CLEAN_BOOK_FROM_AUTHOR = "UPDATE books SET books.author_id=0 WHERE books.author_id=?";
     public static final String UPDATE_AUTHOR = "UPDATE authors SET name=?, country=? WHERE id=?";
     public static final String LAST_AUTHOR_ID = "SELECT MAX(id) FROM authors";
+    public static final String SELECT_AUTHOR_NAME_LIKE = "SELECT authors.name FROM authors WHERE authors.name LIKE ?";
     public static final String READER_BY_ID = "SELECT * FROM readers WHERE id=?";
     public static final String ALL_READERS = "SELECT * FROM readers";
     public static final String READER_BY_NAME = "SELECT * FROM readers WHERE name=?";
@@ -40,4 +41,5 @@ public class LibraryHandbookQuery {
     public static final String DELETE_READER = "DELETE FROM readers WHERE id=?";
     public static final String UPDATE_READER = "UPDATE readers SET name=?, address=?, age=? WHERE id=?";
     public static final String LAST_READER_ID = "SELECT MAX(id) FROM readers";
+    public static final String SELECT_READER_NAME_LIKE = "SELECT readers.name FROM readers WHERE readers.name LIKE '%?%'";
 }

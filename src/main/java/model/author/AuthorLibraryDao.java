@@ -123,6 +123,26 @@ public class AuthorLibraryDao implements LibraryDao<Author> {
         }
     }
 
+    public List<String> getNamesLike(String term) {
+        try {
+            connection = dbController.getConnection();
+            PreparedStatement statement = connection.prepareStatement(LibraryHandbookQuery.SELECT_AUTHOR_NAME_LIKE);
+            term = "%" + term + "%";
+            statement.setString(1, term);
+            ResultSet resultSet = statement.executeQuery();
+            List<String> authorsNames = new ArrayList<>();
+            while (resultSet.next()) {
+                authorsNames.add(resultSet.getString(1));
+            }
+            resultSet.close();
+            statement.close();
+            dbController.closeConnection(connection);
+            return authorsNames;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     private Author createAuthor(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt(1);
         String name = resultSet.getString(2);

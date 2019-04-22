@@ -52,7 +52,7 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public void delete(int id) {
         authorDao.delete(id);
-        ((BookLibraryDao)bookDao).cleanBookFromReader(id);
+        ((BookLibraryDao) bookDao).cleanBookFromReader(id);
     }
 
     @Override
@@ -63,6 +63,11 @@ public class AuthorServiceImpl implements AuthorService {
         author.setCountry(country);
 
         authorDao.save(author);
+    }
+
+    @Override
+    public List<String> getAuthorsNamesLike(String term) {
+        return ((AuthorLibraryDao) authorDao).getNamesLike(term);
     }
 
     private Author getAuthorFromDb(int id) throws AuthorNotFoundException {

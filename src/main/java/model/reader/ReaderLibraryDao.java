@@ -127,6 +127,27 @@ public class ReaderLibraryDao implements LibraryDao<Reader> {
         }
     }
 
+    public List<String> getNamesLike(String term) {
+        try {
+            connection = dbController.getConnection();
+            PreparedStatement statement = connection.prepareStatement(LibraryHandbookQuery.SELECT_READER_NAME_LIKE);
+            term = "%" + term + "%";
+            statement.setString(1, term);
+            ResultSet resultSet = statement.executeQuery();
+            List<String> readersNames = new ArrayList<>();
+            while (resultSet.next()) {
+                readersNames.add(resultSet.getString(1));
+            }
+            resultSet.close();
+            statement.close();
+            dbController.closeConnection(connection);
+            return readersNames;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     private Reader createReader(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt(1);
         String name = resultSet.getString(2);
