@@ -53,6 +53,21 @@ public class BookServiceImpl implements BookService {
         bookDao.delete(id);
     }
 
+    @Override
+    public void save(String title, Author author, Reader reader, boolean available) {
+        if (Objects.nonNull(reader)) {
+            available = false;
+        }
+
+        Book book = new Book();
+        book.setTitle(title);
+        book.setAuthor(author);
+        book.setReader(reader);
+        book.setAvailable(available);
+
+        bookDao.save(book);
+    }
+
     private Book getBookFromDb(int id) throws BookNotFoundException {
         Book book = (Book) bookDao.getById(id);
         if (Objects.isNull(book)) {

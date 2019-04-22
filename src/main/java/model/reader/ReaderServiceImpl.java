@@ -50,6 +50,18 @@ public class ReaderServiceImpl implements ReaderService {
         ((BookLibraryDao)bookDao).cleanBookFromReader(id);
     }
 
+    @Override
+    public void save(String name, String address, byte age) throws IllegalArgumentException {
+        checkAge(age);
+        Reader reader = new Reader();
+
+        reader.setName(name);
+        reader.setAddress(address);
+        reader.setAge(age);
+
+        readerDao.save(reader);
+    }
+
     private Reader getReaderFromDb(int id) throws ReaderNotFoundException {
         Reader reader = (Reader) readerDao.getById(id);
         if (Objects.isNull(reader)) {

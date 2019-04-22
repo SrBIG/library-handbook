@@ -24,7 +24,6 @@ public class ReaderLibraryDao implements LibraryDao<Reader> {
             statement.setString(1, reader.getName());
             statement.setString(2, reader.getAddress());
             statement.setInt(3, reader.getAge());
-            reader.setId(getLastId());
             statement.execute();
             statement.close();
             dbController.closeConnection(connection);
@@ -125,22 +124,6 @@ public class ReaderLibraryDao implements LibraryDao<Reader> {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
-        }
-    }
-
-    private Integer getLastId() {
-        try {
-            connection = dbController.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(LibraryHandbookQuery.LAST_READER_ID);
-            Integer lastId = resultSet.getInt(1);
-            resultSet.close();
-            statement.close();
-            dbController.closeConnection(connection);
-            return lastId;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return 0;
         }
     }
 

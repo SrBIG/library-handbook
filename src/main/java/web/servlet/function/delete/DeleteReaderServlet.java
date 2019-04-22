@@ -1,4 +1,4 @@
-package web.servlet.function;
+package web.servlet.function.delete;
 
 import model.reader.ReaderService;
 import model.reader.ReaderServiceImpl;

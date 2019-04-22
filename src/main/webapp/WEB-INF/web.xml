@@ -47,7 +47,7 @@
 
     <servlet>
         <servlet-name>deleteBook</servlet-name>
-        <servlet-class>web.servlet.function.DeleteBookServlet</servlet-class>
+        <servlet-class>web.servlet.function.delete.DeleteBookServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -57,7 +57,7 @@
 
     <servlet>
         <servlet-name>deleteAuthor</servlet-name>
-        <servlet-class>web.servlet.function.DeleteAuthorServlet</servlet-class>
+        <servlet-class>web.servlet.function.delete.DeleteAuthorServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -67,12 +67,42 @@
 
     <servlet>
         <servlet-name>deleteReader</servlet-name>
-        <servlet-class>web.servlet.function.DeleteReaderServlet</servlet-class>
+        <servlet-class>web.servlet.function.delete.DeleteReaderServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>deleteReader</servlet-name>
         <url-pattern>/deleteReader/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addBook</servlet-name>
+        <servlet-class>web.servlet.page.AddBookPageServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>addBook</servlet-name>
+        <url-pattern>/addBook/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addAuthor</servlet-name>
+        <servlet-class>web.servlet.page.AddAuthorPageServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>addAuthor</servlet-name>
+        <url-pattern>/addAuthor/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addReader</servlet-name>
+        <servlet-class>web.servlet.page.AddReaderPageServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>addReader</servlet-name>
+        <url-pattern>/addReader/*</url-pattern>
     </servlet-mapping>
 
 </web-app>

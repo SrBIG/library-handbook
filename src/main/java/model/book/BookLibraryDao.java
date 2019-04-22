@@ -30,7 +30,6 @@ public class BookLibraryDao implements LibraryDao<Book> {
             statement.setInt(2, authorId);
             statement.setInt(3, readerId);
             statement.setBoolean(4, book.isAvailable());
-            book.setId(getLastId());
             statement.execute();
             statement.close();
             dbController.closeConnection(connection);
@@ -160,22 +159,6 @@ public class BookLibraryDao implements LibraryDao<Book> {
             dbController.closeConnection(connection);
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
-
-    private Integer getLastId() {
-        try {
-            connection = dbController.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(LibraryHandbookQuery.LAST_BOOK_ID);
-            Integer lastId = resultSet.getInt(1);
-            resultSet.close();
-            statement.close();
-            dbController.closeConnection(connection);
-            return lastId;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return 0;
         }
     }
 

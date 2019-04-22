@@ -55,6 +55,16 @@ public class AuthorServiceImpl implements AuthorService {
         ((BookLibraryDao)bookDao).cleanBookFromReader(id);
     }
 
+    @Override
+    public void save(String name, String country) {
+        Author author = new Author();
+
+        author.setName(name);
+        author.setCountry(country);
+
+        authorDao.save(author);
+    }
+
     private Author getAuthorFromDb(int id) throws AuthorNotFoundException {
         Author author = (Author) authorDao.getById(id);
         if (Objects.isNull(author)) {

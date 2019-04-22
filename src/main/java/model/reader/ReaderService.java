@@ -10,4 +10,6 @@ public interface ReaderService {
     void update(int id, String name, String address, byte age) throws ReaderNotFoundException, IllegalArgumentException;
 
     void delete(int id);
+
+    void save(String name, String address, byte age) throws IllegalArgumentException;
 }

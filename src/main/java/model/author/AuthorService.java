@@ -14,4 +14,6 @@ public interface AuthorService {
     void update(int id, String name, String country) throws AuthorNotFoundException;
 
     void delete(int id);
+
+    void save(String name, String country);
 }

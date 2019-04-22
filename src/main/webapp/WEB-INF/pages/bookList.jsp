@@ -9,6 +9,11 @@
         <h3>
             Books
         </h3>
+        <c:if test="${not empty param.message}">
+            <p class="success">
+                    ${param.message}
+            </p>
+        </c:if>
         <script>
             $(document).ready(function () {
                 $('#dtBasicExample').DataTable({

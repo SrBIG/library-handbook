@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Objects;
 
-public class ReaderEditPageServlet extends HttpServlet {
-    private static final String READER = "reader";
+public class AddReaderPageServlet extends HttpServlet {
 
     private ReaderService readerService;
 
@@ -25,11 +24,8 @@ public class ReaderEditPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            int id = extractId(request);
-            Reader reader = readerService.getById(id);
-            request.setAttribute(READER, reader);
-            request.getRequestDispatcher("/WEB-INF/pages/readerEdit.jsp").forward(request, response);
-        } catch (ReaderNotFoundException | NumberFormatException e) {
+            request.getRequestDispatcher("/WEB-INF/pages/readerAdd.jsp").forward(request, response);
+        } catch (NumberFormatException e) {
             response.sendError(404);
         }
     }
@@ -37,7 +33,6 @@ public class ReaderEditPageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            int id = extractId(request);
             boolean hasError = false;
 
             String name = request.getParameter("name");
@@ -66,16 +61,11 @@ public class ReaderEditPageServlet extends HttpServlet {
                 return;
             }
 
-            readerService.update(id, name, address, age);
+            readerService.save(name, address, age);
 
-            response.sendRedirect(request.getRequestURI() + "?message=Updated successfully");
-        } catch (ReaderNotFoundException | NumberFormatException e) {
+            response.sendRedirect(request.getContextPath() + "/books" + "?message=Added successfully");
+        } catch (NumberFormatException e) {
             response.sendError(404);
         }
-    }
-
-    private int extractId(HttpServletRequest request) throws NumberFormatException {
-        String id = request.getPathInfo().substring(1);
-        return Integer.parseInt(id);
     }
 }

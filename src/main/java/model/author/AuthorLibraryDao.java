@@ -23,7 +23,6 @@ public class AuthorLibraryDao implements LibraryDao<Author> {
             PreparedStatement statement = connection.prepareStatement(LibraryHandbookQuery.ADD_AUTHOR);
             statement.setString(1, author.getName());
             statement.setString(2, author.getCountry());
-            author.setId(getLastId());
             statement.execute();
             statement.close();
             dbController.closeConnection(connection);
@@ -121,22 +120,6 @@ public class AuthorLibraryDao implements LibraryDao<Author> {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
-        }
-    }
-
-    private Integer getLastId() {
-        try {
-            connection = dbController.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(LibraryHandbookQuery.LAST_AUTHOR_ID);
-            Integer lastId = resultSet.getInt(1);
-            resultSet.close();
-            statement.close();
-            dbController.closeConnection(connection);
-            return lastId;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return 0;
         }
     }
 

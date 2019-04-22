@@ -2,23 +2,16 @@
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
-<jsp:useBean id="author" scope="request" type="model.author.Author"/>
-
-<tags:master pageTitle="Author Details">
+<tags:master pageTitle="Add Author">
     <div class="main-info-block">
         <h3>
-            Author Edit
+            Add Author
         </h3>
-        <c:if test="${not empty param.message}">
-            <p class="success">
-                    ${param.message}
-            </p>
-        </c:if>
-        <form method="post" action="${pageContext.servletContext.contextPath}/editAuthor/${author.id}">
+        <form method="post" action="${pageContext.servletContext.contextPath}/addAuthor/">
             <p>
                 <label for="name">Author name:</label>
                 <br>
-                <input type="text" id="name" name="name" value="${not empty param.name ? param.name : author.name}">
+                <input type="text" id="name" name="name" value="${not empty param.name ? param.name : ""}">
                 <c:if test="${not empty nameError}">
                     <span class="error">
                         ${nameError}
@@ -28,7 +21,7 @@
             <p>
                 <label for="country">Author county:</label>
                 <br>
-                <input type="text" id="country" name="country" value="${not empty param.country ? param.country : author.country}">
+                <input type="text" id="country" name="country" value="${not empty param.country ? param.country : ""}">
                 <c:if test="${not empty countryError}">
                     <span class="error">
                             ${countryError}
@@ -36,10 +29,7 @@
                 </c:if>
             </p>
             <button>
-                Update
-            </button>
-            <button formmethod="post" formaction="${pageContext.servletContext.contextPath}/deleteAuthor/${author.id}">
-                Delete
+                Add
             </button>
         </form>
     </div>
