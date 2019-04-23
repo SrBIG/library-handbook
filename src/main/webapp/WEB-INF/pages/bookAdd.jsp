@@ -26,8 +26,7 @@
                     var options = {
                         url: function (term) {
                             return "${pageContext.request.contextPath}/authorByHint?term=" + term;
-                        },
-                        getValue: ""
+                        }
                     };
                     $("#author").easyAutocomplete(options);
                 </script>
@@ -45,8 +44,7 @@
                     var options = {
                         url: function (term) {
                             return "${pageContext.request.contextPath}/readerByHint?term=" + term;
-                        },
-                        getValue: "reader"
+                        }
                     };
                     $("#reader").easyAutocomplete(options);
                 </script>

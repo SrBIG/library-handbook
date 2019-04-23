@@ -41,5 +41,5 @@ public class LibraryHandbookQuery {
     public static final String DELETE_READER = "DELETE FROM readers WHERE id=?";
     public static final String UPDATE_READER = "UPDATE readers SET name=?, address=?, age=? WHERE id=?";
     public static final String LAST_READER_ID = "SELECT MAX(id) FROM readers";
-    public static final String SELECT_READER_NAME_LIKE = "SELECT readers.name FROM readers WHERE readers.name LIKE '%?%'";
+    public static final String SELECT_READER_NAME_LIKE = "SELECT readers.name FROM readers WHERE readers.name LIKE ?";
 }

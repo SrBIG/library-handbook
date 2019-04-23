@@ -29,6 +29,14 @@
                 <label for="author">Author:</label>
                 <br>
                 <input type="text" id="author" name="author" value="${not empty param.author ? param.author : book.author.name}">
+                <script>
+                    var options = {
+                        url: function (term) {
+                            return "${pageContext.request.contextPath}/authorByHint?term=" + term;
+                        }
+                    };
+                    $("#author").easyAutocomplete(options);
+                </script>
                 <c:if test="${not empty authorError}">
                     <span class="error">
                             ${authorError}
@@ -39,6 +47,14 @@
                 <label for="reader">Reader:</label>
                 <br>
                 <input type="text" id="reader" name="reader" value="${not empty param.reader ? param.reader : book.reader.name}">
+                <script>
+                    var options = {
+                        url: function (term) {
+                            return "${pageContext.request.contextPath}/readerByHint?term=" + term;
+                        }
+                    };
+                    $("#reader").easyAutocomplete(options);
+                </script>
                 <c:if test="${not empty readerError}">
                     <span class="error">
                             ${readerError}
