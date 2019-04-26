@@ -11,7 +11,7 @@
 
         <c:if test="${not empty user && user.authorized == true}">
             <form method="post" action="${pageContext.servletContext.contextPath}/logOut">
-                Authorized user: ${user.firstName} ${user.lastName}
+                Authorized user: ${user.firstName} ${user.lastName} (${user.login})
                 <br>
                 <button>
                     Log out

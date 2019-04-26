@@ -1,6 +1,7 @@
 package web.servlet.function.auth;
 
 import model.auth.AuthService;
+import model.auth.GithubAuthService;
 import model.auth.VkAuthService;
 
 import javax.servlet.ServletException;
@@ -22,12 +23,12 @@ public class LogInServlet extends HttpServlet {
                 authUri = authService.getAuthUri();
                 break;
             case "github":
-                authUri = "";
+                authService = new GithubAuthService();
+                authUri = authService.getAuthUri();
                 break;
             default:
                 authUri = request.getContextPath();
         }
-
         response.sendRedirect(authUri);
     }
 }

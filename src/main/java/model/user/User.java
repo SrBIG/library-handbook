@@ -5,6 +5,15 @@ public class User {
     private long id;
     private String firstName;
     private String lastName;
+    private String login;
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
     public boolean isAuthorized() {
         return authorized;

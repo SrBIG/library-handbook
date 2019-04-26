@@ -151,6 +151,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>authGithub</servlet-name>
+        <servlet-class>web.servlet.function.auth.AuthGithubServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>authGithub</servlet-name>
+        <url-pattern>/authGithub</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>logOut</servlet-name>
         <servlet-class>web.servlet.function.auth.LogOutServlet</servlet-class>
     </servlet>

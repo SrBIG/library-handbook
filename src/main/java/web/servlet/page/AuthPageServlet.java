@@ -22,10 +22,4 @@ public class AuthPageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/pages/authorization.jsp").forward(request, response);
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String authUri = vkAuthService.getAuthUri();
-        response.sendRedirect(authUri);
-    }
 }
