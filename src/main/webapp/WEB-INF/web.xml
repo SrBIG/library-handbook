@@ -125,4 +125,59 @@
         <url-pattern>/readerByHint</url-pattern>
     </servlet-mapping>
 
+    <filter>
+        <filter-name>authFilter</filter-name>
+        <filter-class>web.filter.AuthFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>authFilter</filter-name>
+        <url-pattern>/editBook/*</url-pattern>
+        <url-pattern>/editAuthor/*</url-pattern>
+        <url-pattern>/editReader/*</url-pattern>
+        <url-pattern>/addBook/</url-pattern>
+        <url-pattern>/addAuthor/</url-pattern>
+        <url-pattern>/addReader/</url-pattern>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>authVk</servlet-name>
+        <servlet-class>web.servlet.function.auth.AuthVkServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>authVk</servlet-name>
+        <url-pattern>/authVk</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>logOut</servlet-name>
+        <servlet-class>web.servlet.function.auth.LogOutServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>logOut</servlet-name>
+        <url-pattern>/logOut</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>logIn</servlet-name>
+        <servlet-class>web.servlet.function.auth.LogInServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>logIn</servlet-name>
+        <url-pattern>/logIn</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>authorization</servlet-name>
+        <servlet-class>web.servlet.page.AuthPageServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>authorization</servlet-name>
+        <url-pattern>/authorization</url-pattern>
+    </servlet-mapping>
+
 </web-app>
