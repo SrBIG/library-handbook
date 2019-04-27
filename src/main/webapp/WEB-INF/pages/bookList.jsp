@@ -2,6 +2,7 @@
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=Cp1251" pageEncoding="Cp1251" %>
+<%@ taglib prefix="ftr" uri="footertag" %>
 
 <jsp:useBean id="books" scope="request" type="java.util.ArrayList"/>
 
@@ -90,4 +91,5 @@
     </table>
 </div>
 </body>
+<ftr:footer-tag/>
 </html>
