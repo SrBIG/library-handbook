@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<%@ page language="java" contentType="text/html; charset=Cp1251" pageEncoding="Cp1251"%>
+<%@ page language="java" contentType="text/html; charset=Cp1251" pageEncoding="Cp1251" %>
 
 <tags:master pageTitle="Authorization">
     <div class="main-info-block">
@@ -11,7 +11,10 @@
 
         <c:if test="${not empty user && user.authorized == true}">
             <form method="post" action="${pageContext.servletContext.contextPath}/logOut">
-                Authorized user: ${user.firstName} ${user.lastName} (${user.login})
+                Authorized user: ${user.firstName} ${user.lastName}
+                <c:if test="${not empty user.login}">
+                    (${user.login})
+                </c:if>
                 <br>
                 <button>
                     Log out

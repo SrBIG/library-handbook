@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ page language="java" contentType="text/html; charset=Cp1251" pageEncoding="Cp1251" %>
 
 <jsp:useBean id="books" scope="request" type="java.util.ArrayList"/>
 
@@ -34,8 +35,9 @@
     <a href="${pageContext.servletContext.contextPath}">
         Library Handbook
     </a>
-    <span style="margin-left: 55%">
+    <span style="margin-left: 52%; font-size: 20px">
         <jsp:include page="../components/addBar.jsp"/>
+        <jsp:include page="../components/logBar.jsp"/>
     </span>
 </header>
 

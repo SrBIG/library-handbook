@@ -42,8 +42,9 @@
     <a href="${pageContext.servletContext.contextPath}">
         Library Handbook
     </a>
-    <span style="margin-left: 55%">
+    <span style="margin-left: 52%; font-size: 20px">
         <jsp:include page="../components/addBar.jsp"/>
+        <jsp:include page="../components/logBar.jsp"/>
     </span>
 </header>
 <main>
