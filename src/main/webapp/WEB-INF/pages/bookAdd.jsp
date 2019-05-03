@@ -26,6 +26,12 @@
                     var options = {
                         url: function (term) {
                             return "${pageContext.request.contextPath}/authorByHint?term=" + term;
+                        },
+                        list: {
+                            maxNumberOfElements: 5,
+                            match: {
+                                enabled: true
+                            }
                         }
                     };
                     $("#author").easyAutocomplete(options);
@@ -44,6 +50,12 @@
                     var options = {
                         url: function (term) {
                             return "${pageContext.request.contextPath}/readerByHint?term=" + term;
+                        },
+                        list: {
+                            maxNumberOfElements: 5,
+                            match: {
+                                enabled: true
+                            }
                         }
                     };
                     $("#reader").easyAutocomplete(options);
