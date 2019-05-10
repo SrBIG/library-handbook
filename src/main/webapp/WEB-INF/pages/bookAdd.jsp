@@ -21,21 +21,27 @@
             <p>
                 <label for="author">Author:</label>
                 <br>
-                <input type="text" id="author" name="author" value="${not empty param.author ? param.author : ""}">
-                <script>
-                    var options = {
-                        url: function (term) {
-                            return "${pageContext.request.contextPath}/authorByHint?term=" + term;
-                        },
-                        list: {
-                            maxNumberOfElements: 5,
-                            match: {
-                                enabled: true
-                            }
-                        }
-                    };
-                    $("#author").easyAutocomplete(options);
-                </script>
+                <input type="text" id="author" name="author" value="${not empty param.author ? param.author : ""}"
+                       list="authorsHint" autocomplete="off">
+                <datalist id="authorsHint">
+                    <c:forEach var="authorName" items="${authors}">
+                    <option value="${authorName}">
+                        </c:forEach>
+                </datalist>
+                    <%--                <script>--%>
+                    <%--                    var options = {--%>
+                    <%--                        url: function (term) {--%>
+                    <%--                            return "${pageContext.request.contextPath}/authorByHint?term=" + term;--%>
+                    <%--                        },--%>
+                    <%--                        list: {--%>
+                    <%--                            maxNumberOfElements: 5,--%>
+                    <%--                            match: {--%>
+                    <%--                                enabled: true--%>
+                    <%--                            }--%>
+                    <%--                        }--%>
+                    <%--                    };--%>
+                    <%--                    $("#author").easyAutocomplete(options);--%>
+                    <%--                </script>--%>
                 <c:if test="${not empty authorError}">
                     <span class="error">
                             ${authorError}
@@ -45,21 +51,27 @@
             <p>
                 <label for="reader">Reader:</label>
                 <br>
-                <input type="text" id="reader" name="reader" value="${not empty param.reader ? param.reader : ""}">
-                <script>
-                    var options = {
-                        url: function (term) {
-                            return "${pageContext.request.contextPath}/readerByHint?term=" + term;
-                        },
-                        list: {
-                            maxNumberOfElements: 5,
-                            match: {
-                                enabled: true
-                            }
-                        }
-                    };
-                    $("#reader").easyAutocomplete(options);
-                </script>
+                <input type="text" id="reader" name="reader" value="${not empty param.reader ? param.reader : ""}"
+                       autocomplete="off" list="readersHint">
+                <datalist id="readersHint">
+                    <c:forEach var="readerName" items="${readers}">
+                    <option value="${readerName}">
+                        </c:forEach>
+                </datalist>
+                    <%--                <script>--%>
+                    <%--                    var options = {--%>
+                    <%--                        url: function (term) {--%>
+                    <%--                            return "${pageContext.request.contextPath}/readerByHint?term=" + term;--%>
+                    <%--                        },--%>
+                    <%--                        list: {--%>
+                    <%--                            maxNumberOfElements: 5,--%>
+                    <%--                            match: {--%>
+                    <%--                                enabled: true--%>
+                    <%--                            }--%>
+                    <%--                        }--%>
+                    <%--                    };--%>
+                    <%--                    $("#reader").easyAutocomplete(options);--%>
+                    <%--                </script>--%>
                 <c:if test="${not empty readerError}">
                     <span class="error">
                             ${readerError}

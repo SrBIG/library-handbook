@@ -4,6 +4,7 @@ import model.auth.AuthService;
 import model.auth.GithubAuthService;
 import model.auth.VkAuthService;
 import model.user.User;
+import model.user.UserService;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -23,26 +24,31 @@ import java.nio.charset.StandardCharsets;
 
 public class AuthGithubServlet extends HttpServlet {
     private AuthService githubAuthService;
+    private UserService userService;
 
     @Override
     public void init() throws ServletException {
         githubAuthService = new GithubAuthService();
+        userService = new UserService();
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String code = request.getParameter("code");
         String tokenUri = githubAuthService.getTokenUri(code);
 
         JSONObject json = getAccessTokenJson(tokenUri);
 
         if (!json.has("access_token")) {
-            response.sendRedirect(request.getContextPath() + "books");
+            response.sendRedirect(request.getContextPath() + "/books");
+            return;
         }
 
         String accessToken = json.getString("access_token");
 
         User user = takeUserInfo(accessToken);
+
+        userService.checkUser(user);
 
         request.getSession().setAttribute("user", user);
 
@@ -53,7 +59,7 @@ public class AuthGithubServlet extends HttpServlet {
         CloseableHttpClient httpClient = HttpClients.createDefault(); // not closeable
 
         HttpPost post = new HttpPost(tokenUri);
-        post.addHeader("Accept","application/json");
+        post.addHeader("Accept", "application/json");
 
         InputStream responseStream = httpClient.execute(post).getEntity().getContent();
 
@@ -67,7 +73,6 @@ public class AuthGithubServlet extends HttpServlet {
 
         HttpGet get = new HttpGet(uri);
 
-
         InputStream responseStream = httpClient.execute(get).getEntity().getContent();
         JSONObject json = new JSONObject(new JSONTokener(new InputStreamReader(responseStream)));
         if (json.has("error")) {
@@ -76,16 +81,18 @@ public class AuthGithubServlet extends HttpServlet {
         }
 
         String login = json.getString("login");
+        Integer id = json.getInt("id");
 
-        User user = createUser(login);
+        User user = createUser(id, login);
 
         return user;
     }
 
-    private User createUser(String login) {
+    private User createUser(Integer id, String login) {
         User user = new User();
 
         user.setLogin(login);
+        user.setId(id);
 
         user.setAuthorized(true);
         return user;

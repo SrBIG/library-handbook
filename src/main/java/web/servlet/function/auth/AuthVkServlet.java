@@ -3,6 +3,7 @@ package web.servlet.function.auth;
 import model.auth.AuthService;
 import model.auth.VkAuthService;
 import model.user.User;
+import model.user.UserService;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -21,10 +22,12 @@ import java.nio.charset.StandardCharsets;
 
 public class AuthVkServlet extends HttpServlet {
     private AuthService vkAuthService;
+    private UserService userService;
 
     @Override
     public void init() throws ServletException {
         vkAuthService = new VkAuthService();
+        userService = new UserService();
     }
 
     @Override
@@ -35,13 +38,16 @@ public class AuthVkServlet extends HttpServlet {
         JSONObject json = getAccessTokenJson(tokenUri);
 
         if (!json.has("access_token")) {
-            response.sendRedirect(request.getContextPath() + "books");
+            response.sendRedirect(request.getContextPath() + "/books");
+            return;
         }
 
         String accessToken = json.getString("access_token");
         int id = json.getInt("user_id");
 
         User user = takeUserInfo(accessToken, id);
+
+        userService.checkUser(user);
 
         request.getSession().setAttribute("user", user);
 

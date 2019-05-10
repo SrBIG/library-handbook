@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ tag trimDirectiveWhitespaces="true" %>
 <%@ attribute name="pageTitle" required="true" %>
-<%@ taglib prefix="ftr" uri="footertag" %>
+<%@ taglib prefix="bk" uri="booktag" %>
 
 <html>
 <head>
@@ -52,5 +52,5 @@
     <jsp:doBody/>
 </main>
 </body>
-<ftr:footer-tag/>
+<bk:footer-tag/>
 </html>

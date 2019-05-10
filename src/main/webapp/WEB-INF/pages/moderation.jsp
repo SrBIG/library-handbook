@@ -42,7 +42,7 @@
 
 <div class="main-info-block">
     <h3>
-        Books
+        Moderation
     </h3>
     <c:if test="${not empty param.message}">
         <p class="success">
@@ -72,51 +72,47 @@
     <a href="${pageContext.servletContext.contextPath}/books?page=1">First</a>
     <a href="${pageContext.servletContext.contextPath}/books?page=${numPages}">Last</a>
     <br>
-    <table class="table table-striped table-bordered table-sm" border="1" cellpadding="5" cellspacing="5">
-        <thead>
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Reader</th>
-            <th>Available</th>
-        </tr>
-        </thead>
-
-        <c:forEach var="book" items="${books}">
+    <form method="post">
+        <table class="table table-striped table-bordered table-sm" border="1" cellpadding="5" cellspacing="5">
+            <thead>
             <tr>
-                <td>
-                    <a href="${pageContext.servletContext.contextPath}/editBook/${book.id}">${book.title}</a>
-                </td>
-                <td>
-                    <a href="${pageContext.servletContext.contextPath}/editAuthor/${book.author.id}">${book.author.name}</a>
-                </td>
-                <td>
-                    <a href="${not empty book.reader ? pageContext.servletContext.contextPath.concat("/editReader/").concat(book.reader.id) : null}">
-                            ${not empty book.reader ? book.reader.name : ""}
-                    </a>
-                </td>
-                <td>
-                        ${book.available == true ? "<span class=\"success\">Yes</span>" : "<span class=\"error\">No</span>"}
-                </td>
+                <th>id</th>
+                <th>Name</th>
+                <th>Role</th>
             </tr>
-        </c:forEach>
-    </table>
+            </thead>
 
-    <%--    <table border="1" cellpadding="5" cellspacing="5">--%>
-    <%--        <tr>--%>
-    <%--            <c:forEach begin="1" end="${numPages}" var="i">--%>
-    <%--                <c:choose>--%>
-    <%--                    <c:when test="${currentPage eq i}">--%>
-    <%--                        <td>${i}</td>--%>
-    <%--                    </c:when>--%>
-    <%--                    <c:otherwise>--%>
-    <%--                        <td><a href="${pageContext.servletContext.contextPath}/books?page=${i}">${i}</a></td>--%>
-    <%--                    </c:otherwise>--%>
-    <%--                </c:choose>--%>
-    <%--            </c:forEach>--%>
-    <%--        </tr>--%>
-    <%--    </table>--%>
-
+            <c:forEach var="user" items="${users}">
+                <tr>
+                    <td>
+                            ${user.id}
+                    </td>
+                    <td>
+                            ${user.firstName} ${user.lastName}
+                        <c:if test="${not empty user.login}">
+                            (${user.login})
+                        </c:if>
+                    </td>
+                    <td>
+                            ${user.role}
+                    </td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${user.role==\"ADMIN\"}">
+                                <input type="submit" value="kick admin" formaction="${pageContext.servletContext.contextPath}/moderation/deleteAdmin/${user.id}">
+                            </c:when>
+                            <c:when test="${user.role==\"USER\"}">
+                                <input type="submit" value="make admin" formaction="${pageContext.servletContext.contextPath}/moderation/addAdmin/${user.id}">
+                            </c:when>
+                            <c:when test="${user.role==\"OWNER\"}">
+                                It's you
+                            </c:when>
+                        </c:choose>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </form>
 </div>
 </body>
 <bk:footer-tag/>

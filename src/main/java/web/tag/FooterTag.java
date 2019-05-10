@@ -21,9 +21,9 @@ public class FooterTag extends TagSupport {
                 "  igb9925@gmail.com</a>.</p>\n" +
                 "</footer>";
         try {
-            JspWriter out = pageContext.getOut();
+             JspWriter out = pageContext.getOut();
             out.write(footer);
-        } catch (IOException e) {
+        } catch (IOException | NullPointerException e) {
             throw new JspException(e.getMessage());
         }
         return SKIP_BODY;

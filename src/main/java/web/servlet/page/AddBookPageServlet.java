@@ -18,7 +18,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class AddBookPageServlet extends HttpServlet {
     private BookService bookService;
@@ -35,6 +37,12 @@ public class AddBookPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            List<String> authors = authorService.getAllAuthors().stream()
+                    .map(Author::getName)
+                    .collect(Collectors.toList());
+            request.setAttribute("authors", authors);
+            List<String> readers = readerService.getReadersNamesLike("");
+            request.setAttribute("readers", readers);
             request.getRequestDispatcher("/WEB-INF/pages/bookAdd.jsp").forward(request, response);
         } catch (NumberFormatException e) {
             response.sendError(404);

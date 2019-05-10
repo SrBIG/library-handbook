@@ -10,9 +10,9 @@ public class VkAuthService implements AuthService {
         authUri.append(authBundle.getString("vk.authUri"))
                 .append("?").append("client_id=").append(authBundle.getString("vk.clientId"))
                 .append("&").append("display=page")
-                .append("&").append("redirect_uri=").append(authBundle.getString("vk.redirectURI"))
                 .append("&").append("response_type=code")
-                .append("&").append("v=").append(authBundle.getString("vk.version"));
+                .append("&").append("v=").append(authBundle.getString("vk.version"))
+                .append("&").append("redirect_uri=").append(authBundle.getString("vk.redirectURI"));
         return authUri.toString();
     }
 

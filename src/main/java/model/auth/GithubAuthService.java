@@ -9,10 +9,10 @@ public class GithubAuthService implements AuthService {
         StringBuilder authUri = new StringBuilder();
         authUri.append(authBundle.getString("github.authUri"))
                 .append("?").append("client_id=").append(authBundle.getString("github.clientId"))
-                .append("&").append("redirect_uri=").append(authBundle.getString("github.redirectURI"))
                 .append("&").append("scope=").append(authBundle.getString("github.scope"))
                 .append("&").append("state=").append(authBundle.getString("github.state"))
-                .append("&").append("allow_signup=false");
+                .append("&").append("allow_signup=false")
+                .append("&").append("redirect_uri=").append(authBundle.getString("github.redirectURI"));
         return authUri.toString();
     }
 

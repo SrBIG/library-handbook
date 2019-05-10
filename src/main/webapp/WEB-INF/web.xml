@@ -105,26 +105,6 @@
         <url-pattern>/addReader/*</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>authorByHint</servlet-name>
-        <servlet-class>web.servlet.function.hint.AuthorByHintServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>authorByHint</servlet-name>
-        <url-pattern>/authorByHint</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>readerByHint</servlet-name>
-        <servlet-class>web.servlet.function.hint.ReaderByHintServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>readerByHint</servlet-name>
-        <url-pattern>/readerByHint</url-pattern>
-    </servlet-mapping>
-
     <filter>
         <filter-name>authFilter</filter-name>
         <filter-class>web.filter.AuthFilter</filter-class>
@@ -138,6 +118,8 @@
         <url-pattern>/addBook/</url-pattern>
         <url-pattern>/addAuthor/</url-pattern>
         <url-pattern>/addReader/</url-pattern>
+        <url-pattern>/addAdmin</url-pattern>
+        <url-pattern>/addNewAdmin</url-pattern>
     </filter-mapping>
 
     <servlet>
@@ -192,8 +174,8 @@
 
     <jsp-config>
         <taglib>
-            <taglib-uri>footertag</taglib-uri>
-            <taglib-location>/WEB-INF/tld/custom.tld</taglib-location>
+            <taglib-uri>booktag</taglib-uri>
+            <taglib-location>/WEB-INF/tld/booktag.tld</taglib-location>
         </taglib>
     </jsp-config>
 

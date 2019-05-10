@@ -6,9 +6,18 @@ public class User {
     private String firstName;
     private String lastName;
     private String login;
+    private UserRole role;
 
     public String getLogin() {
         return login;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 
     public void setLogin(String login) {

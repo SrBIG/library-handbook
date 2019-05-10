@@ -18,7 +18,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class BookEditPageServlet extends HttpServlet {
     private static final String BOOK = "book";
@@ -39,6 +41,12 @@ public class BookEditPageServlet extends HttpServlet {
         try {
             int id = extractId(request);
             Book book = bookService.getBookById(id);
+            List<String> authors = authorService.getAllAuthors().stream()
+                    .map(Author::getName)
+                    .collect(Collectors.toList());
+            request.setAttribute("authors", authors);
+            List<String> readers = readerService.getReadersNamesLike("");
+            request.setAttribute("readers", readers);
             request.setAttribute(BOOK, book);
             request.getRequestDispatcher("/WEB-INF/pages/bookEdit.jsp").forward(request, response);
         } catch (BookNotFoundException | NumberFormatException e) {

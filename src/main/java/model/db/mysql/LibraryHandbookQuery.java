@@ -42,4 +42,11 @@ public class LibraryHandbookQuery {
     public static final String UPDATE_READER = "UPDATE readers SET name=?, address=?, age=? WHERE id=?";
     public static final String LAST_READER_ID = "SELECT MAX(id) FROM readers";
     public static final String SELECT_READER_NAME_LIKE = "SELECT readers.name FROM readers WHERE readers.name LIKE ?";
+    public static final String CHECK_OWNER = "SELECT * FROM users WHERE users.role=2";
+    public static final String ADD_USER = "INSERT INTO users (id, role, name) VALUES(?,?,?)";
+    public static final String USER_BY_ID = "SELECT users.role FROM users WHERE users.id=?";
+    public static final String ADMIN_UP = "UPDATE users SET role=1 WHERE id=?";
+    public static final String ADMIN_DELETE = "UPDATE users SET role=0 WHERE id=?";
+    public static final String ALL_USERS = "SELECT * FROM users";
+    public static final String DELETE_USER = "DELETE FROM users WHERE id=?";
 }
